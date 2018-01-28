@@ -1,4 +1,4 @@
-stm8flash
+stm8flash ( without espstlink )
 =========
 
 This is a free and opensource software distributed under the terms of the GNU General Public License v2.
@@ -13,7 +13,7 @@ Synopsis
 --------
 
 ```
-stm8flash -c <stlink|stlinkv2|espstlink> -p <partname> [-s flash|eeprom|0x8000] [-r|-w|-v] <filename>
+stm8flash -c <stlink|stlinkv2> -p <partname> [-s flash|eeprom|0x8000] [-r|-w|-v] <filename>
 ```
 
 The supported file types are Intel Hex, Motorola S-Record and Raw Binary. The type is detected by the file extension.
