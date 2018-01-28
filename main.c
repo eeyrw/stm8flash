@@ -9,7 +9,6 @@
 #include <stdbool.h>
 #include <assert.h>
 #include "pgm.h"
-#include "espstlink.h"
 #include "stlink.h"
 #include "stlinkv2.h"
 #include "stm8.h"
@@ -30,8 +29,8 @@ extern int opterr;
 extern int optreset;
 #endif
 
-#define VERSION_RELASE_DATE "20170616"
-#define VERSION "1.1"
+#define VERSION_RELASE_DATE "20180128"
+#define VERSION "1.1-NOT-ESPSTLINK"
 #define VERSION_NOTES ""
 
 programmer_t pgms[] = {
@@ -54,26 +53,15 @@ programmer_t pgms[] = {
 		stlink2_swim_read_range,
 		stlink2_swim_write_range,
 	},
-    {
-		"espstlink",
-		0,
-		0,
-		espstlink_open,
-		espstlink_close,
-		espstlink_srst,
-		espstlink_swim_read_range,
-		espstlink_swim_write_range,
-	},
 	{ NULL },
 };
 
 void print_help_and_exit(const char *name, bool err) {
 	FILE *stream = err ? stderr : stdout;
-	fprintf(stream, "Usage: %s [-c programmer] [-p partno] [-s memtype] [-b bytes] [-r|-w|-v] <filename>\n", name);
+	fprintf(stream, "Usage: %s [-c programmer] [-s memtype] [-b bytes] [-r|-w|-v] <filename>\n", name);
 	fprintf(stream, "Options:\n");
 	fprintf(stream, "\t-?             Display this help\n");
-	fprintf(stream, "\t-c programmer  Specify programmer used (stlink, stlinkv2 or espstlink)\n");
-	fprintf(stream, "\t-d port        Specify the serial device for espstlink (default: /dev/ttyUSB0)\n");
+	fprintf(stream, "\t-c programmer  Specify programmer used (stlink, stlinkv2)\n");
 	fprintf(stream, "\t-p partno      Specify STM8 device\n");
 	fprintf(stream, "\t-l             List supported STM8 devices\n");
 	fprintf(stream, "\t-s memtype     Specify memory type (flash, eeprom, ram, opt or explicit address)\n");
